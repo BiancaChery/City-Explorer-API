@@ -6,7 +6,7 @@ let port = 3300
 
 class Weather {
     constructor(weatherObj) {
-        this.cityName = weatherObj.cityName;
+        this.city_Name = weatherObj.city_Name;
     }
 }
 
@@ -17,9 +17,9 @@ app.get('/', (request, response) => {
 app.get('/weather', (request, response) => {
     let weatherState = request. query.weatherState;
     let infoOfState = data
-    let cityName = request.query.cityName;
+    let cityName = request.query.city_Name;
     
-    let weather = data.find((w) => w.cityName === cityName)
+    let weather = data.find((w) => w.city_Name === cityName)
     if(weather) {
         response.status(200).send(new Weather(weather));
     } else {
