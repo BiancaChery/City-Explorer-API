@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
 })
 
 app.get('/weather', (request, response) => {
-    let weatherState = request. query.weatherState;
+    let weatherState = request.query.weatherState;
     let infoOfState = data
     let cityName = request.query.city_Name;
     
@@ -31,14 +31,27 @@ app.get('/weather', (request, response) => {
     }
 })
 
+class Forecast {
+    constructor(ForecastObj) {
+        this.valid_date = ForecastObj.valid_date;
+        this.description = ForecastObj.weather.description;
+    }
+}
 
 
 
 
 
+
+
+
+
+
+app.use((error, request, response, next)=> {
+    response.status(500).send(error.message);
+});
 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
