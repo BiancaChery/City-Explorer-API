@@ -26,10 +26,10 @@ The technologies used were React, Express and weather.json
 
 Name of feature: City Explorer API
 
-Estimate of time needed to complete: 3 hours
+Estimate of time needed to complete: Lab 7-3 hours, Lab 8-2 hours, 30 minutes
 
-Start time: 8:10pm
+Start time: Lab 7-8:10pm, Lab 8-8:45pm
 
-Finish time: 10:40pm
+Finish time: Lab 7-10:40pm, Lab 8-
 
-Actual time needed to complete: 2 hours, 30 minutes
+Actual time needed to complete: Lab 7-2 hours, 30 minutes. Lab 8-
