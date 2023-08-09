@@ -1,47 +1,42 @@
-let express = require('express')
+const express = require('express')
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+
+require("dotenv").config();
+const port = 3300
+
 data = require("./data/weather.json")
 
-let app = express()
-let port = 3300
-
-class Weather {
-    constructor(weatherObj) {
-        this.city_Name = weatherObj.city_Name;
+class Forecast {
+    constructor(valid_date, description) {
+        this.date = valid_date;
+        this.description = description;
     }
 }
 
 app.get('/', (request, response) => {
-  response.send('Welcome To The Weather!')
+  response.send('City Explorer Weather!')
 })
 
-app.get('/weather', (request, response) => {
-    let weatherState = request.query.weatherState;
-    let infoOfState = data
-    let cityName = request.query.city_Name;
-    
-    let weather = data.find((w) => w.city_Name === cityName)
+app.get('/weather', async (request, response) => {
+    try {
+        let weather = data.find((city) => city.city_Name === request.query.searchQuery);
     if(weather) {
-        response.status(200).send(new Weather(weather));
+        let dates = weather.data.map((day) => {
+            let forecast = new Forecast(day.valid_date, day.weather.description);
+            
+            return forecast;
+        })
+        response.send(dates);
     } else {
-        response.status(404).send(
-            {
-                error: "City not found"
-            }
-        );
+        response.status(404).send({error: "City not found"});
+    } 
+    } catch (error) {
+        response.status(500).send({error: "An error has occurred"});
     }
-})
-
-class Forecast {
-    constructor(ForecastObj) {
-        this.valid_date = ForecastObj.valid_date;
-        this.description = ForecastObj.weather.description;
-    }
-}
-
-
-
-
-
+});
 
 
 
