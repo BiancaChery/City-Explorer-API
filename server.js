@@ -56,8 +56,8 @@ try {
     const apiResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${cityLat}&lon=${cityLon}&key=${weatherApiKey}&days=3`);
     console.log(apiResponse);
 
-    const forecast = apiResponse.data.data.map((city) => {
-        return new Forecast(city.datetime, city.weather.description);
+    const forecast = apiResponse.data.data.map((item) => {
+        return new Forecast(item.datetime, item.weather.description);
     });
     console.log(forecast);
     response.json(forecast);
